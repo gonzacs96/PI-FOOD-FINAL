@@ -1,0 +1,18 @@
+.conteiner{
+    background-image: url('../../assets/landingPageBackGround.jpg');
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    background-color: maroon;
+    height: 2.5rem;
+    width: 5.5rem;
+    border-radius: 0.3rem;
+    border-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+

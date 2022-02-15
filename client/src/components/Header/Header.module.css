@@ -1,0 +1,32 @@
+.conteiner {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.conteinerFilters{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.button1 {
+    background: #212129;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    padding: 8px 0;
+    transition: 300ms;
+    justify-self: end;
+    padding: 10px;
+    border: 2px solid black;
+    margin-left: 10px;
+ }
+ .button1:hover{
+     background: #a3031d;
+     transition: 300ms;
+     cursor: pointer;
+ }

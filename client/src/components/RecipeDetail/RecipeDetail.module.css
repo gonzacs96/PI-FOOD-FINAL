@@ -1,0 +1,53 @@
+.button1 {
+    background: #212129;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    padding: 8px 0;
+    transition: 300ms;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border: 2px solid black;
+ }
+ .button1:hover{
+     background: #a3031d;
+     transition: 300ms;
+     cursor: pointer;
+     
+ }
+
+ .title{
+     margin-top: 10px;
+     margin-bottom: 10px;
+     margin-left: auto;
+     margin-right: auto;
+     font-size: 2rem;
+     color: wheat;
+ }
+
+ .image{
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 20px;
+     width: 300px;
+     height: 200px;
+ }
+
+ .conteiner {
+     display: grid;
+    grid-gap: 1px;
+    grid-row-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+    color: white;
+    background: #212129;
+    border-radius: 2rem;
+    padding: 1rem;
+ }
