@@ -1,6 +1,10 @@
 import { filterByDiet } from "./../../auxFunctions/filterByDiet";
 import { sortAlphabetically } from "./../../auxFunctions/sortAlphabetically";
 import {
+  sortByScoreLess_More,
+  sortByScoreMore_Less,
+} from "../../auxFunctions/sortByScore";
+import {
   RESET_RECIPES,
   SET_DIET_TYPES,
   SET_FILTERED_RECIPES,
@@ -9,6 +13,7 @@ import {
   SET_SEARCHED_RECIPES,
   ADD_RECIPE,
   SET_RECIPE_BY_ID,
+  SET_SORTED_SCORE,
 } from "../actions/actions";
 
 const initialState = {
@@ -43,6 +48,14 @@ const rootReducer = (state = initialState, action) => {
           state.visibleRecipes,
           action.payload
         ),
+      };
+    case SET_SORTED_SCORE:
+      return {
+        ...state,
+        visibleRecipes:
+          action.payload === "desc"
+            ? sortByScoreMore_Less([...state.visibleRecipes])
+            : sortByScoreLess_More([...state.visibleRecipes]),
       };
     case SET_SEARCHED_RECIPES:
       return {

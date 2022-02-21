@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { resetRecipes } from "../../redux/actions";
-import s from './ButtonReset.module.css'
+import "./ButtonReset.css";
 
 export const ButtonReset = ({ changeDadState }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,9 @@ export const ButtonReset = ({ changeDadState }) => {
 
   return (
     <>
-      <button onClick={handleReset} className={s.button1}>Reset</button>
+      <button onClick={handleReset} className="buttonReset">
+        Reset
+      </button>
     </>
   );
 };

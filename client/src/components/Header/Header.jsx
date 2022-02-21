@@ -4,9 +4,12 @@ import { ButtonReset } from "./../ButtonReset/ButtonReset";
 import { SortBar } from "../SortBar/SortBar";
 import { FilterBar } from "./../FilterBar/FilterBar";
 import { useState } from "react";
-import s from "./Header.module.css";
+import { Link } from "react-router-dom";
+import "./Header.css";
+import logo from "../../assets/bannerFood.png";
 
-export const Header = ({ resetCurrentPage }) => {
+
+export const Header = ({ resetCurrentPage, setFilterState }) => {
   const [state, setState] = useState({
     search: "",
     sort: "",
@@ -22,6 +25,12 @@ export const Header = ({ resetCurrentPage }) => {
         filter: [],
       };
     });
+    setFilterState({
+      ...state,
+      search: value,
+      sort: "",
+      filter: [],
+    });
     resetCurrentPage();
   };
   const handleStateSort = (value) => {
@@ -30,6 +39,10 @@ export const Header = ({ resetCurrentPage }) => {
         ...prevState,
         sort: value,
       };
+    });
+    setFilterState({
+      ...state,
+      sort: value,
     });
     resetCurrentPage();
   };
@@ -42,6 +55,10 @@ export const Header = ({ resetCurrentPage }) => {
         };
       });
     }
+    setFilterState({
+      ...state,
+      filter: [...state.filter, value],
+    });
     resetCurrentPage();
   };
 
@@ -51,30 +68,80 @@ export const Header = ({ resetCurrentPage }) => {
       sort: "",
       filter: [],
     });
+    setFilterState({
+      search: "",
+      sort: "",
+      filter: [],
+    });
     resetCurrentPage();
   };
 
   return (
     <>
-      <div className={s.conteiner}>
-        <SearchBar changeDadState={handleStateSearch} />
-        <SortBar changeDadState={handleStateSort} />
-        <FilterBar changeDadState={handleStateFilter} />
-        <ButtonReset changeDadState={handleResetState} />
-      </div>
-      <div className={s.conteinerFilters}>
-        {state.filter.map((filter) => (
-          <div key={filter} className={s.button1}>
-            {filter}
-          </div>
-        ))}
-        {state.sort !== "" ? (
-          <div className={s.button1}>{state.sort}</div>
-        ) : null}
-        {state.search !== "" ? (
-          <div className={s.button1}>{state.search}</div>
-        ) : null}
-      </div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-ligth">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to={"/home"}>
+                <img
+                  src={logo}
+                  className="header-logo"
+                  alt="GS"
+                />
+              </Link>
+            </li>
+            <li className="nav-item">
+              <SearchBar changeDadState={handleStateSearch} />
+            </li>
+            <li className="nav-item">
+              <SortBar changeDadState={handleStateSort} />
+            </li>
+            <li className="nav-item">
+              <FilterBar changeDadState={handleStateFilter} />
+            </li>
+            <li className="nav-item">
+              <ButtonReset changeDadState={handleResetState} />
+            </li>
+            <li className="nav-item">
+              <Link to={"/createRecipe"}>
+                <button className="buttonCreateRecipe-header">
+                  Create Recipe
+                </button>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      {/*  <div className="header">
+        <img src={logo} alt="logo" className="header-logo" />
+        <div className="header-navbar">
+          <SearchBar changeDadState={handleStateSearch} />
+          <SortBar changeDadState={handleStateSort} />
+          <FilterBar changeDadState={handleStateFilter} />
+          <ButtonReset changeDadState={handleResetState} />
+          <Link to={"/createRecipe"}>
+            <button className="buttonCreateRecipe-header">Create Recipe</button>
+          </Link>
+        </div>
+        <div className="header-current-filters">
+          {state.filter.map((filter) => (
+            <div key={filter}>{filter}</div>
+          ))}
+          {state.sort !== "" ? <div>{state.sort}</div> : null}
+          {state.search !== "" ? <div>{state.search}</div> : null}
+        </div>
+      </div> */}
     </>
   );
 };

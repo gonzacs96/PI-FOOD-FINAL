@@ -1,0 +1,27 @@
+.home-body {
+  padding-top: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 50px;
+}
+
+.header-current-filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-filters-item {
+    background-color: red;
+    font-size: 13px;
+    padding: 0.5em 1em;
+    border-radius: 7px;
+    color: white;   
+    border:2px solid black;
+    margin: 2px;
+}

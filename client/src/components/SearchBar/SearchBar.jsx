@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { setSearchedRecipes } from "../../redux/actions";
-import s from './SearchBar.module.css'
+import './SearchBar.css'
 
 
 export const SearchBar = ({ changeDadState }) => {
@@ -20,10 +20,9 @@ export const SearchBar = ({ changeDadState }) => {
   };
 
   return (
-    <div className={s.conteiner}>
-      <label htmlFor="search" className={s.search}>Buscar receta: </label>
-      <input type="text" name="search" value={search} onChange={handleInput} className={s.input}/>
-      <button onClick={handleSearch} className={s.button2}>Buscar</button>
+    <div className="searchBar">
+      <input className="input-searchBar" type="text" name="search" value={search} onChange={handleInput} placeholder="Buscar receta"/>
+      <button onClick={handleSearch} className="button-searchBar">Buscar</button>
     </div>
   );
 };

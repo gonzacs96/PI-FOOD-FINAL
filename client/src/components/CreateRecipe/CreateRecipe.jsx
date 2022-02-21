@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNewRecipe } from "../../redux/actions/index";
 import { Link } from "react-router-dom";
 import s from "./CreateRecipe.module.css";
-import { useEffect } from "react";
+import tu_receta from "../../assets/tu_receta.png"
 
 export const CreateRecipe = () => {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
-  const [checkboxs, setCheckboxs] = useState({});
+  const [checkboxs, setCheckboxs] = useState([]);
   const [recipe, setRecipe] = useState({
     title: "",
     summary: "",
@@ -17,21 +17,6 @@ export const CreateRecipe = () => {
     stepByStep: [],
     diets: [],
   });
-
-  useEffect(() => {
-    const putDietsOnRecipe = (stateCheckboxs) => {
-      let result = Object.values(stateCheckboxs);
-      result = result.filter((el) => el.checked === true);
-      result = result.map((el) => parseInt(el.value));
-      return result;
-    };
-    setRecipe((prevState) => {
-      return {
-        ...prevState,
-        diets: putDietsOnRecipe(checkboxs),
-      };
-    });
-  }, [checkboxs]);
 
   const handleChange = (e) => {
     if (e.target.name === "stepByStep") {
@@ -48,14 +33,19 @@ export const CreateRecipe = () => {
   };
 
   const setValueCheckBox = (e) => {
-    setCheckboxs({
-      ...checkboxs,
-      [e.target.name]: {
-        checked: e.target.checked,
-        value: e.target.value,
-        element: e.target,
-      },
-    });
+    if (e.target.checked) {
+      setRecipe({
+        ...recipe,
+        diets: [...recipe.diets, e.target.value],
+      });
+      setCheckboxs([...checkboxs, e.target]);
+    } else {
+      setRecipe({
+        ...recipe,
+        diets: [...recipe.diets.filter((d) => d !== e.target.value)],
+      });
+      setCheckboxs([...checkboxs.filter((el) => el !== e.target)]);
+    }
   };
 
   const cleanForm = () => {
@@ -69,8 +59,8 @@ export const CreateRecipe = () => {
       diets: [],
     });
     //limpio los checkkboxs
-    Object.values(checkboxs).map((elem) => (elem.element.checked = false));
-    setCheckboxs({});
+    checkboxs.map((c) => (c.checked = false));
+    setCheckboxs([]);
   };
 
   const validateName = (name) => {
@@ -101,62 +91,65 @@ export const CreateRecipe = () => {
       <Link to={"/home"}>
         <button className={s.button1}>Volver a Home</button>
       </Link>
-      <div className={s.titlee}>Tu receta</div>
+      <div>
+      <img src={tu_receta} alt="tu_receta" className={s.logo_create_recipe}/>
+      </div>
       <form onSubmit={sendRecipe}>
-        <div className={s.inputsConteiner}>
-          <input
-            type="text"
-            name="title"
-            placeholder="Ingrese un nombre"
-            onChange={handleChange}
-            value={recipe.title}
-            className={s.input}
-          />
-          {!validateName(recipe.title) ? (
-            <span>Ingresa nombre valido</span>
-          ) : null}
-          <input
-            type="text"
-            name="summary"
-            placeholder="Ingrese un resumen"
-            onChange={handleChange}
-            value={recipe.summary}
-            className={s.input}
-          />
-          {recipe.summary === " " ? (
-            <span>Ingresa un resumen valido</span>
-          ) : null}
-          <input
-            type="number"
-            name="score"
-            placeholder="Ingrese una puntuacion"
-            onChange={handleChange}
-            value={recipe.score}
-            className={s.input}
-          />
-          {recipe.score < 0 || recipe.score > 100 ? (
-            <span>Ingresa un score de 1-100</span>
-          ) : null}
-          <input
-            type="number"
-            name="healthScore"
-            placeholder="Ingrese nivel de comida sana"
-            onChange={handleChange}
-            value={recipe.healthScore}
-            className={s.input}
-          />
-          {recipe.healthScore < 0 || recipe.healthScore > 100 ? (
-            <span>Ingresa un nivel de 1-100</span>
-          ) : null}
-          <input
-            type="text"
-            name="stepByStep"
-            placeholder="Ingrese un paso a paso"
-            onChange={handleChange}
-            value={recipe.stepByStep}
-            className={s.input}
-          />
-        </div>
+        <div className={s.inputsText}>
+          <div className={s.inputsConteiner}>
+            <input
+              type="text"
+              name="title"
+              placeholder="Ingrese un nombre"
+              onChange={handleChange}
+              value={recipe.title}
+              className={s.input}
+            />
+            {!validateName(recipe.title) ? (
+              <span>Ingresa nombre valido</span>
+            ) : null}
+            <input
+              type="text"
+              name="summary"
+              placeholder="Ingrese un resumen"
+              onChange={handleChange}
+              value={recipe.summary}
+              className={s.input}
+            />
+            {recipe.summary === " " ? (
+              <span>Ingresa un resumen valido</span>
+            ) : null}
+            <input
+              type="number"
+              name="score"
+              placeholder="Ingrese una puntuacion"
+              onChange={handleChange}
+              value={recipe.score}
+              className={s.input}
+            />
+            {recipe.score < 0 || recipe.score > 100 ? (
+              <span>Ingresa un score de 1-100</span>
+            ) : null}
+            <input
+              type="number"
+              name="healthScore"
+              placeholder="Ingrese nivel de comida sana"
+              onChange={handleChange}
+              value={recipe.healthScore}
+              className={s.input}
+            />
+            {recipe.healthScore < 0 || recipe.healthScore > 100 ? (
+              <span>Ingresa un nivel de 1-100</span>
+            ) : null}
+            <input
+              type="text"
+              name="stepByStep"
+              placeholder="Ingrese un paso a paso"
+              onChange={handleChange}
+              value={recipe.stepByStep}
+              className={s.input}
+            />
+          </div>
         <div>
           {diets.map((diet) => {
             return (
@@ -172,11 +165,10 @@ export const CreateRecipe = () => {
             );
           })}
         </div>
-        <div>
-          <button type="submit" className={s.button1}>
-            Enviar Receta
-          </button>
         </div>
+        <button type="submit" className={s.button1}>
+          Enviar Receta
+        </button>
       </form>
     </div>
   );

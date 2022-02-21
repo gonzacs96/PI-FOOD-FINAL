@@ -19,7 +19,7 @@ export const RecipeDetail = () => {
   }
   return (
     <>
-      <Link to={"/home"}>
+      <Link to={"/home"} className={s.link}>
         <button className={s.button1}>Volver a home</button>
       </Link>
       {!recipe.title ? <h1 className={s.title}>Loading...</h1> : null}

@@ -1,50 +1,126 @@
 .button1 {
-    display: block;
+  margin: 20px;
+  border: none;
+  font-size: 10px;
+  padding: 0.5em 1em;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  background: #212129;
+  color: white;
+}
+.button1:hover {
+  background: #a3031d;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.inputsConteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.input {
+  margin-top: 20px;
+  background: #212129;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  transition: 300ms;
+  align-self: center;
+  border-radius: 2rem;
+  padding: 10px 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.checkboxs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  background: #212129;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 0;
+  transition: 300ms;
+  padding: 10px;
+  border-radius: 2rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.logo_create_recipe {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.inputsText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.formConteiner {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+@media (min-width: 950px) {
+  .button1 {
+    margin: 20px;
+    border: none;
+    font-size: 15px;
+    padding: 0.5em 1em;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    background: #212129;
+    color: white;
+  }
+  .button1:hover {
+    background: #a3031d;
+    transition: 300ms;
+    cursor: pointer;
+  }
+
+  .inputsConteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .input {
     margin-top: 20px;
     background: #212129;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    padding: 8px 0;
     transition: 300ms;
     align-self: center;
-    padding: 10px;
-    border: 2px solid black;
-    margin-left: auto;
-    margin-right: auto;
- }
- .button1:hover{
-     background: #a3031d;
-     transition: 300ms;
-     cursor: pointer;
- }
-
- .inputsConteiner{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     margin-top: 20px;
-     margin-bottom: 20px;
- }
-
- .input{
-    margin-top: 20px;
-    background: #212129;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 8px 0;
-    transition: 300ms;
-    align-self: center;
-    padding: 10px;
-    border: 2px solid black;
+    border-radius: 2rem;
     margin-right: auto;
     margin-left: auto;
- }
+  }
 
- .checkboxs{
+  .checkboxs {
     margin-top: 20px;
     background: #212129;
     color: white;
@@ -58,12 +134,18 @@
     margin-right: auto;
     margin-left: auto;
     width: 300px;
- } 
+  }
 
+  .logo_create_recipe {
+    width: 200px;
+  }
 
- .titlee{
-     margin-top: 20px;
-     font-size: 5rem;
-     margin-right: auto;
-     margin-left: auto;
- }
+  .inputsText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    margin: 0 auto;
+  }
+}

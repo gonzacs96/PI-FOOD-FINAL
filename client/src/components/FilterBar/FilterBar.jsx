@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setFilteredRecipes } from "../../redux/actions";
-import s from './FilterBar.module.css'
+import "./FilterBar.css";
 
 export const FilterBar = ({ changeDadState }) => {
   const diets = useSelector((state) => state.diets);
@@ -20,7 +20,7 @@ export const FilterBar = ({ changeDadState }) => {
         name="filter_diets"
         defaultValue="default"
         onChange={handleFilter}
-        className={s.button1}
+        className="filterBar-select"
       >
         <option value="default" disabled>
           Seleccione un tipo de dieta

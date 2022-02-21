@@ -5,7 +5,7 @@ const axios = require("axios");
 
 const getRecipesByName = async (req, res, next) => {
   let { name } = req.query;
-  name=name.toLowerCase();
+  name = name.toLowerCase();
   try {
     let recipes_db = await Recipe.findAll({
       where: { title: { [Op.substring]: name } },
@@ -17,6 +17,7 @@ const getRecipesByName = async (req, res, next) => {
         title: recipe.title,
         image: recipe.image,
         diets: recipe.diets.map((diet) => diet.name),
+        score: recipe.score,
       };
     });
     let recipes_api = await axios.get(
@@ -28,6 +29,7 @@ const getRecipesByName = async (req, res, next) => {
         title: recipe.title,
         image: recipe.image,
         diets: recipe.diets,
+        score: recipe.spoonacularScore,
       };
     });
     res.json([...recipes_db, ...recipes_api]);

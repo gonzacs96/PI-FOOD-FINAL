@@ -1,12 +1,4 @@
-.conteiner {
-  background-image: url("../../assets/landingPageBackGround.jpg");
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.button {
+.buttonReset {
   border: none;
   font-size: 15px;
   padding: 0.5em 1em;
@@ -19,7 +11,7 @@
   color: white;
 }
 
-.button:hover {
+.buttonReset:hover {
   background: #a3031d;
   transition: 300ms;
   cursor: pointer;

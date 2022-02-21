@@ -7,6 +7,7 @@ import {
   SET_SEARCHED_RECIPES,
   SET_RECIPE_BY_ID,
   ADD_RECIPE,
+  SET_SORTED_SCORE,
 } from "./actions";
 import { getRecipes } from "../../services/getRecipes";
 import { getDietTypes } from "../../services/getDietTypes";
@@ -81,5 +82,12 @@ export const setRecipeById = (id) => {
       type: SET_RECIPE_BY_ID,
       payload: recipe_by_id,
     });
+  };
+};
+
+export const setSortedScore = (value) => {
+  return {
+    type: SET_SORTED_SCORE,
+    payload: value,
   };
 };
